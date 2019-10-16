@@ -1,0 +1,374 @@
+<!--COCPF-Ver-2.1 jiq App SUR-->
+<div style="border: 1px solid black;width:auto;height: 100%;">
+    <br>
+
+    <table border=1 height="70px" style="margin-left:1%;width:98%;height:50px">
+        <tbody>
+            <tr>
+                <td style=" padding: 0px 6px 0px 6px !important;" width="180">
+                    <div class="image-container">
+                        <img class="resize" src="../private/files/jiq_logo.png" />
+                    </div>
+
+                </td>
+                <td style=" padding: 22px 40px 0px 40px !important;" colspan=1 width="400" style="text-align: center; vertical-align: middle;"><font size="4">
+
+                <div><b> {{ "CERTIFICATE OF CONFORMANCE" }}</b></div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+    <br>
+<table  style="margin-left:1%; width: 98%; height:auto; ">
+    <tbody>
+    {% set item_data = frappe.get_doc("Item", doc.item_code) %}
+    {% set company = doc.pch_company %}
+
+    {% set reference_doctype = doc.reference_type %}
+    {% set reference_doctype_name = doc.reference_name %}
+
+    {% set reference_doctype_data = frappe.get_doc(reference_doctype, reference_doctype_name) %}
+
+
+        <tr>
+            <td style="width:auto;">
+
+            <b>MANUFACTURER:</b>
+            </td>
+            <td style="width:auto;">
+               {%- if company %}
+                   {{ company }}
+        {%- else -%}
+            {{ "" }}
+            {%- endif -%}
+            </td>
+
+             <td style="width:auto;">
+            <b>CUSTOMER:</b>
+            </td>
+             <td style="width:auto;">
+           {%- if reference_doctype_data.customer %}
+                   {{ reference_doctype_data.customer }}
+        {%- else -%}
+            {{ "" }}
+            {%- endif -%}
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width:auto;">
+
+            <b>MFG LOCATION:</b>
+            </td>
+             <td style="width:auto;">
+
+        {%- if doc.pch_mfg_location %}
+                       {{ doc.pch_mfg_location }}
+        {%- else -%}
+            {{ "" }}
+            {%- endif -%}
+            </td>
+
+             <td style="width:auto;">
+
+             <b>CUSTOMER PO #:</b>
+            </td>
+             <td style="width:auto;">
+        {%- if reference_doctype_data.po_no %}
+                   {{ reference_doctype_data.po_no }}
+        {%- else -%}
+            {{ "" }}
+            {%- endif -%}
+            </td>
+        </tr>
+
+    <tr>
+            <td style="width:auto;">
+
+            <b>DESCRIPTION:</b><br>{{ item_data.description }}
+            </td>
+
+        </tr>
+
+    <tr>
+            <td style="width:auto;">
+
+            <b>PART#:</b><br>
+        {%- if item_data.pch_base_item_code %}
+            {{ item_data.pch_base_item_code }}
+        {%- else -%}
+            {{ "" }}
+            {%- endif -%}
+            </td>
+
+             <td style="width:auto;">
+
+            <b>REVISION:</b><br>
+        {%- if item_data.pch_revision_number %}
+            {{ item_data.pch_revision_number }}
+        {%- else -%}
+            {{ "" }}
+            {%- endif -%}
+            </td>
+        </tr>
+
+    <tr>
+            <td style="width:auto;">
+
+            <b>SERIAL #:</b>
+            </td>
+
+       <td style="width:auto;">
+               {%- if doc.item_serial_no %}
+            {{ doc.item_serial_no }}
+        {%- else -%}
+            {{ "" }}
+            {%- endif -%}
+            </td>
+
+        </tr>
+
+    </tbody>
+</table>
+
+<br>
+
+<div class = "text-center"><font size = "3"><h4><b>PERFORMANCE CRITERIA:</b></h4>
+                        </font>
+</div>
+
+
+  {% set readings = doc.readings %}
+    {% set readings_list = [] %}
+    {% set readings_json = {} %}
+    {% set cocpf_readings_json = {} %}  <!--{specification : row data specification}-->
+
+  {% set cocpf_specification_list = [] %}
+  {% set qi_specification_list = [] %}
+
+    {% set default_cocpf = item_data.pch_default_cocpf %}
+
+  {%- if default_cocpf %}  <!--if  default_cocpf present in item master-->
+
+      {% set default_cocpf_data = frappe.get_doc("Certificate of Conformance Requirements", default_cocpf) %}
+
+      {%- for row in default_cocpf_data.readings -%}
+
+      {% set cocpf_readings = {"reading_type": row.reading_type, "report_value": row.report_value, "tffv": row.text_following_float_value} %}
+      {% set _ = cocpf_readings_json.update({row.specification: cocpf_readings}) %}
+      {% set _ = cocpf_specification_list.append(row.specification) %}
+
+      {%- endfor -%}
+
+  {%- endif -%}  <!--End if  default_cocpf present in item master-->
+
+
+    {%- for row in readings -%}  <!--looping qi readings table(current doc)-->
+
+  {%- if row.specification in cocpf_specification_list %}   <!--if checking current doc reading list against cocpf list-->
+
+    <!--updating reading list ac to number_of_readings_to_be_considered-->
+
+        {% set reading_list = [] %}
+
+        {%- if row.reading_1 %}
+            {% set _ = reading_list.append(row.reading_1) %}
+        {%- endif -%}
+
+        {%- if row.reading_2 %}
+            {% set _ = reading_list.append(row.reading_2) %}
+        {%- endif -%}
+
+        {%- if row.reading_3 %}
+            {% set _ = reading_list.append(row.reading_3) %}
+        {%- endif -%}
+
+        {%- if row.reading_4 %}
+            {% set _ = reading_list.append(row.reading_4) %}
+        {%- endif -%}
+
+        {%- if row.reading_5 %}
+            {% set _ = reading_list.append(row.reading_5) %}
+        {%- endif -%}
+
+        {%- if row.reading_6 %}
+            {% set _ = reading_list.append(row.reading_6) %}
+        {%- endif -%}
+
+        {%- if row.reading_7 %}
+            {% set _ = reading_list.append(row.reading_7) %}
+        {%- endif -%}
+
+        {%- if row.reading_8 %}
+            {% set _ = reading_list.append(row.reading_8) %}
+        {%- endif -%}
+
+        {%- if row.reading_9 %}
+            {% set _ = reading_list.append(row.reading_9) %}
+        {%- endif -%}
+
+        {%- if row.reading_10 %}
+            {% set _ = reading_list.append(row.reading_10) %}
+        {%- endif -%}
+
+    <!--End updating reading list ac to number_of_readings_to_be_considered-->
+
+
+
+
+
+                {% set cocf_params = cocpf_readings_json[ row.specification ] %}
+                {% set _ = readings_json.update({"max": row.specification}) %} <!--Doubt-->
+
+        {%- if cocf_params["report_value"] == "Min" %} <!--Max SWP  checking Min-->
+
+            {% set min_value_dict = {"min_value" : None} %}
+
+            {%- for value in reading_list -%} <!--finding min value from reading_list in a row -->
+              {%- if not min_value_dict['min_value'] %}
+                {% set _ = min_value_dict.update({"min_value" : value}) %}
+              {%- else -%}
+                {%- if value < min_value_dict['min_value'] | float %}
+                  {% set _ = min_value_dict.update({"min_value" : value}) %}
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}  <!--End finding min value from reading_list in a row -->
+
+            {%- if cocf_params["tffv"] %} <!--Appendimg string to min value -->
+              {% set _ = min_value_dict.update({"min_value" : min_value_dict['min_value'] + " "+ cocf_params["tffv"]}) %}
+            {%- endif -%}
+            {% set _ = readings_json.update({ row.specification : min_value_dict['min_value']}) %}
+
+        {%- endif -%} <!--End Max SWP  checking Min-->
+
+
+                    {%- if cocf_params["report_value"] == "Max" %} <!-- Max SWP  checking Max-->
+
+                        {% set max_value_dict = {"max_value" : None} %}
+
+            {%- for value in reading_list -%}
+                {%- if not max_value_dict['max_value'] %}
+                  {% set _ = max_value_dict.update({"max_value" : value}) %}
+                {%- else -%}
+                  {%- if value > max_value_dict['max_value'] | float %}
+                    {% set _ = max_value_dict.update({"max_value" : value}) %}
+                  {%- endif -%}
+                {%- endif -%}
+            {%- endfor -%}
+            {%- if cocf_params["tffv"] %}
+                {% set _ = max_value_dict.update({"max_value" : max_value_dict['max_value'] + " "+ cocf_params["tffv"]}) %}
+            {%- endif -%}
+            {% set _ = readings_json.update({ row.specification : max_value_dict['max_value']}) %}
+
+                    {%- endif -%} <!-- End Max SWP  checking Max-->
+
+                    {%- if cocf_params["report_value"] == "Avg" %} <!-- Max SWP  checking Avg-->
+                        {% set count = reading_list|length %}
+                        {% set total_sum = {"total": 0.0} %}
+                        {%- for value in reading_list -%}
+                            {% set _ = total_sum.update({"total" : (total_sum['total'] | float + value  | float )}) %}
+                        {%- endfor -%}
+                        {% set avg_of_readings = (total_sum['total'] / count) | round(2) %}
+
+                        {%- if cocf_params["tffv"] %}
+                            {% set _ = readings_json.update({ row.specification : avg_of_readings | string + " "+ cocf_params["tffv"]}) %}
+                        {%- else -%}
+                            {% set _ = readings_json.update({ row.specification : avg_of_readings}) %}
+                        {%- endif -%}
+
+                    {%- endif -%}  <!--End  Max SWP  checking Max-->
+
+                    {%- if cocf_params["report_value"] == "Report Acceptance Criteria" %}
+                        {% set _ = readings_json.update({ row.specification : row.value}) %}
+
+                    {%- endif -%}
+
+                    {%- if cocf_params["report_value"] == "Reading1" %}
+                        {% set _ = readings_json.update({  row.specification : row.reading_1}) %}
+
+                    {%- endif -%}
+
+  {%- endif -%} <!--End if checking current doc reading list against cocpf list-->
+  {%- endfor -%}   <!--End looping qi readings table(current doc)-->
+
+  <!-- Appending collected datas-->
+  <table style="margin-left:1%; width: 100%; height:auto; ">
+  <tbody>
+
+  {% for n in range(0,cocpf_specification_list| length,2) %}
+
+
+    <tr>
+      <td style="width:auto;">
+        <b> {{ cocpf_specification_list [n] }} : </b>
+      </td>
+      <td style="width:auto;">
+        {{ readings_json[ cocpf_specification_list [n] ] }}
+      </td >
+      <td style="width:auto;">
+        {%- if cocpf_specification_list [n+1] %}
+        <b> {{ cocpf_specification_list [n+1] }} : </b>
+
+        {%- endif -%}
+      </td>
+      <td style="width:auto;">
+        {%- if cocpf_specification_list [n+1] %}
+            {{ readings_json[ cocpf_specification_list [n+1] ] }}
+        {%- endif -%}
+      </td>
+    </tr>
+
+  {%- endfor -%}
+
+</tbody>
+</table>
+
+
+
+
+  <!-- Appending collected datas-->
+
+
+<br>
+
+<div style="margin-left:2%;width:98%;">
+
+  <font><b>APPLICABLE STANDARDS:</b> </font> <br>
+
+  {%- if doc.pch_applicable_standards %}
+      {{ doc.pch_applicable_standards }}
+  {%- endif -%}
+
+
+
+</div>
+
+<br>
+
+<br>
+
+<div style="margin-left:2%;width:98%;"><font>We hereby certify that the above goods has been manufactured in accordance with applicable JIQ Manufacturing Ltd specifications, procedures, applicable industry standards and customer purchase order requirements. All certified goods have met the requirements of JIQ Manufacturing Ltd Quality Management System.</font>
+</div>
+<br>
+<br>
+<br>
+
+<table width="100%" style="margin-left:10px">
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    <td style=" padding: 50px 0px 0px 0px !important;"><b>Quality Assurance:</td>    <td style=" padding: 50px 0px 0px 0px !important;"><input type="text" class="signature" /></td>  </tr>
+        </table>
+        </td>
+
+        <td>
+         <table>
+            <tr><td style=" padding: 50px 0px 0px 180px !important;"><b>Date:</td>    <td style=" padding: 50px 0px 0px 0px !important;"><input type="text" class="date_signature" /></td>  </tr>
+        </table>
+        </td>
+    </tr>
+
+</table><br><br><br><br>
+</div>

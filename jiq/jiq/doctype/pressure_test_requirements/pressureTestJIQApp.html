@@ -1,0 +1,324 @@
+<!--PT Ver-2.1 SUR jiq App-->
+<div style="border: 1px solid black;width:auto;height: 100%;">
+    <br>
+
+    <table border=1 height="70px" style="margin-left:1%;width:98%;height:50px">
+        <tbody>
+            <tr>
+                <td style=" padding: 0px 6px 0px 6px !important;" width="180">
+                    <div class="image-container">
+                        <img class="resize" src="../private/files/jiq_logo.png" />
+                    </div>
+
+                </td>
+                <td style=" padding: 22px 40px 0px 40px !important;" colspan=1 width="400" style="text-align: center; vertical-align: middle;"><font size="4">
+
+                <div><b> {{ "CERTIFICATE OF CONFORMANCE" }}</b></div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br>
+
+<div class = "text-center"><font size = "3"><h4><b>PRESSURE TEST:</b></h4>
+                        </font>
+</div>
+<br>
+
+<table  style="margin-left:1%; width: 98%; height:auto; ">
+<tbody>
+
+	{% set item_data = frappe.get_doc("Item", doc.item_code) %}
+
+	<tr>
+            <td style="width:auto;">
+
+            <b>PART#:</b>
+            </td>
+            <td style="width:60%;">
+                {%- if item_data.pch_base_item_code %}
+                    {{ item_data.pch_base_item_code }}
+                {%- else -%}
+                    {{ "" }}
+                {%- endif -%}
+            </td>
+
+             <td style="width:auto;">
+            <b>REVISION:</b>
+            </td>
+             <td style="width:70%;">
+                {%- if item_data.pch_revision_number %}
+                    {{ item_data.pch_revision_number }}
+                {%- else -%}
+                    {{ "" }}
+                {%- endif -%}
+            </td>
+        </tr>
+</tbody>
+</table><br>
+
+<div style="margin-left:2%;width:98%;"><font><b>DESCRIPTION:</b><br>{{ item_data.description }}
+                        </font>
+</div><br>
+
+
+<table  style="margin-left:1%; width: 98%; height:auto; ">
+<tbody>
+<tr>
+            <td style="width:auto;">
+            <b>SERIAL #:</b>
+            </td>
+	    <td style="width:80%;">
+          {%- if doc.item_serial_no %}
+              {{ doc.item_serial_no }}
+          {%- else -%}
+              {{ "" }}
+          {%- endif -%}
+            </td>
+        </tr>
+</tbody>
+</table><br><br><br><br><br><br>
+
+<table  style="margin-left:1%; width: 98%; height:auto; ">
+<tbody>
+
+	{% set readings = doc.readings %}
+	{% set readings_list = [] %}
+	{% set readings_json = {} %}
+	{% set ptpf_readings_json = {} %}   <!--{specification : row data specification}-->
+
+  {% set ptpf_specification_list = [] %}
+  {% set qi_specification_list = [] %}
+
+
+	{% set default_ptpf = item_data.pch_default_ptpf %}
+
+  {%- if default_ptpf %}   <!--if  default_ptpf present in item master-->
+
+      {% set default_ptpf_data = frappe.get_doc("Pressure Test Requirements", default_ptpf) %}
+
+      {%- for row in default_ptpf_data.readings -%}  <!--looping ptpf readings table-->
+
+          {% set ptpf_readings = {"reading_type": row.reading_type, "report_value": row.report_value, "tffv": row.text_following_float_value} %}
+          {% set _ = ptpf_readings_json.update({row.specification: ptpf_readings}) %}
+          {% set _ = ptpf_specification_list.append(row.specification) %}
+
+      {%- endfor -%}  <!--End looping ptpf readings table-->
+
+  {%- endif -%}  <!--End if  default_ptpf present in item master-->
+
+	{%- for row in readings -%} <!--looping qi readings table(current doc)-->
+
+  {%- if row.specification in ptpf_specification_list %}   <!--if checking current doc reading list against ptpf list-->
+
+    <!--updating reading list ac to number_of_readings_to_be_considered-->
+		{% set reading_list = [] %}
+
+		{%- if default_ptpf_data.number_of_readings_to_be_considered | int >= 1 %}
+			{%- if row.reading_1 %}
+				{% set _ = reading_list.append(row.reading_1) %}
+			{%- endif -%}
+		{%- endif -%}
+
+		{%- if default_ptpf_data.number_of_readings_to_be_considered | int >= 2 %}
+			{%- if row.reading_2 %}
+				{% set _ = reading_list.append(row.reading_2) %}
+			{%- endif -%}
+		{%- endif -%}
+
+		{%- if default_ptpf_data.number_of_readings_to_be_considered | int >= 3 %}
+			{%- if row.reading_3 %}
+				{% set _ = reading_list.append(row.reading_3) %}
+			{%- endif -%}
+		{%- endif -%}
+
+		{%- if default_ptpf_data.number_of_readings_to_be_considered | int >= 4 %}
+			{%- if row.reading_4 %}
+				{% set _ = reading_list.append(row.reading_4) %}
+			{%- endif -%}
+		{%- endif -%}
+
+		{%- if default_ptpf_data.number_of_readings_to_be_considered | int >= 5 %}
+			{%- if row.reading_5 %}
+				{% set _ = reading_list.append(row.reading_5) %}
+			{%- endif -%}
+		{%- endif -%}
+
+		{%- if default_ptpf_data.number_of_readings_to_be_considered | int >= 6 %}
+			{%- if row.reading_6 %}
+				{% set _ = reading_list.append(row.reading_6) %}
+			{%- endif -%}
+		{%- endif -%}
+
+
+		{%- if default_ptpf_data.number_of_readings_to_be_considered | int >= 7 %}
+			{%- if row.reading_7 %}
+				{% set _ = reading_list.append(row.reading_7) %}
+			{%- endif -%}
+		{%- endif -%}
+
+
+		{%- if default_ptpf_data.number_of_readings_to_be_considered | int >= 8 %}
+			{%- if row.reading_8 %}
+				{% set _ = reading_list.append(row.reading_8) %}
+			{%- endif -%}
+		{%- endif -%}
+
+		{%- if default_ptpf_data.number_of_readings_to_be_considered | int >= 9 %}
+			{%- if row.reading_9 %}
+				{% set _ = reading_list.append(row.reading_9) %}
+			{%- endif -%}
+		{%- endif -%}
+
+		{%- if default_ptpf_data.number_of_readings_to_be_considered | int >= 10 %}
+			{%- if row.reading_10 %}
+				{% set _ = reading_list.append(row.reading_10) %}
+			{%- endif -%}
+		{%- endif -%}
+    <!--End of updating reading list ac to number_of_readings_to_be_considered-->
+
+
+		{%- if default_ptpf_data.reports_based_on == "Different Readings" %}   <!--if checking reports_based_on  "Different Readings"-->
+
+				{% set ptpf_params = ptpf_readings_json[ row.specification ] %} <!--ptpf_params is row data ac to specification-->
+
+					{%- if ptpf_params["report_value"] == "Min" %}  <!--Max SWP  checking Min-->
+
+						    {% set min_value_dict = {"min_value" : None} %}
+
+                {%- for value in reading_list -%}    <!--finding min value from reading_list in a row -->
+
+                    {%- if not min_value_dict['min_value'] %}
+                        {% set _ = min_value_dict.update({"min_value" : value}) %}
+                    {%- else -%}
+                        {%- if value < min_value_dict['min_value'] | float %}
+                            {% set _ = min_value_dict.update({"min_value" : value}) %}
+                        {%- endif -%}
+                    {%- endif -%}
+
+                {%- endfor -%}   <!--End finding min value from reading_list in a row -->
+
+                {%- if ptpf_params["tffv"] %}   <!--Appendimg string to min value -->
+                {% set _ = min_value_dict.update({"min_value" : min_value_dict['min_value'] + " "+ ptpf_params["tffv"]}) %}
+                {%- endif -%}
+
+                {% set _ = readings_json.update({ row.specification : min_value_dict['min_value']}) %}
+
+        {%- endif -%} <!--End Max SWP  checking Min-->
+
+
+					{%- if ptpf_params["report_value"] == "Max" %}   <!-- Max SWP  checking Max-->
+
+                {% set max_value_dict = {"max_value" : None} %}
+
+                {%- for value in reading_list -%}
+                    {%- if not max_value_dict['max_value'] %}
+                      {% set _ = max_value_dict.update({"max_value" : value}) %}
+                    {%- else -%}
+                      {%- if value > max_value_dict['max_value'] | float %}
+                        {% set _ = max_value_dict.update({"max_value" : value}) %}
+                      {%- endif -%}
+                    {%- endif -%}
+                {%- endfor -%}
+
+                {%- if ptpf_params["tffv"] %}
+                    {% set _ = max_value_dict.update({"max_value" : max_value_dict['max_value'] + " "+ ptpf_params["tffv"]}) %}
+                {%- endif -%}
+
+                {% set _ = readings_json.update({row.specification : max_value_dict['max_value']}) %}
+
+					{%- endif -%} <!-- End Max SWP  checking Max-->
+
+					{%- if ptpf_params["report_value"] == "Avg" %}   <!--  Max SWP  checking Avg-->
+
+                {% set count = reading_list|length %}
+                {% set total_sum = {"total": 0.0} %}
+
+                {%- for value in reading_list -%}
+                    {% set _ = total_sum.update({"total" : (total_sum['total'] | float + value  | float )}) %}
+                {%- endfor -%}
+
+                {% set avg_of_readings = (total_sum['total'] / count) | round(2)%}
+
+                {%- if ptpf_params["tffv"] %}
+                  {% set _ = readings_json.update({ row.specification : avg_of_readings | string + " "+ ptpf_params["tffv"]}) %}
+                {%- else -%}
+                  {% set _ = readings_json.update({ row.specification : avg_of_readings}) %}
+                {%- endif -%}
+
+          {%- endif -%} <!--  Max SWP  checking Avg-->
+
+          {%- if ptpf_params["report_value"] == "Report Acceptance Criteria" %} <!-- the above are for float, Max SWP under "text " Report Acceptance Criteria,Reading1 -->
+            {% set _ = readings_json.update({ row.specification : row.value}) %}
+          {%- endif -%}
+
+          {%- if ptpf_params["report_value"] == "Reading1" %}
+              {% set _ = readings_json.update({ row.specification: row.reading_1}) %}
+		      {%- endif -%}
+
+		{%- endif -%}  <!--End if checking reports_based_on  "Different Readings"-->
+
+
+
+		{%- if default_ptpf_data.reports_based_on == "Separate Reports" %} <!--if checking reports_based_on  "Separate Reports"-->
+
+				{% set ptpf_params = ptpf_readings_json[ row.specification ] %}
+				{% set _ = readings_json.update({ row.specification : row.reading_1 + " " + ptpf_params["tffv"]}) %}
+
+		{%- endif -%} <!--End if checking reports_based_on  "Separate Reports"-->
+
+
+
+
+   <!-- Appending collected datas-->
+
+
+   <tr>
+     <td style="width:auto;">
+       <b> {{ row.specification }}:</b>
+     </td>
+     <td style="width:70%;">
+         {%- if readings_json[ row.specification ] %}
+             {{ readings_json[ row.specification ] }}
+         {%- else -%}
+             {{ "" }}
+         {%- endif -%}
+     </td>
+   </tr>
+
+   {%- endif -%} <!--End if checking current doc reading list against ptpf list-->
+   {%- endfor -%}   <!--End looping qi readings table(current doc)-->
+
+
+	<tr>
+            <td style="width:auto;">
+            <b>OPERATOR:</b>
+            </td>
+	<td style="width:70%;">
+               {{ frappe.session.user }}
+            </td>
+        </tr>
+	<tr>
+            <td style="width:auto;">
+            <b>APPROVED BY:</b>
+            </td>
+	<td style="width:70%;">
+               {%- if doc.pch_approved_by %}
+			{{ doc.pch_approved_by }}
+		{%- else -%}
+			{{ "" }}
+        	{%- endif -%}
+            </td>
+        </tr>
+</tbody>
+</table><br>
+
+<table style="margin-left:1%;">   <!-- Dynamic Image at bottom-->
+  <td >
+    <div class="image-container">
+    <img src="{{doc.pch_image}}" />
+    </div>
+  </td>
+</table><br>
+
+</div>
