@@ -8,14 +8,10 @@ frappe.ui.form.on("Internal Concession", "reference_name", function(frm, cdt, cd
     if (reference_type == "Work Order") {
         var item_serial_no = d.item_serial_no;
         console.log("item_serial_no", item_serial_no);
-        var get_serial_no = [];
-        get_serial_no = get_item_serial_list(work_order);
-        console.log("get_serial_no------------", get_serial_no);
 
-        //cur_frm.set_value("serial_no", get_serial_no.toString());
         cur_frm.set_query('item_serial_no', function() {
-            var get_serial_no = [];
-            get_serial_no = get_item_serial_list(work_order);
+
+            var get_serial_no = get_item_serial_list(work_order);
             console.log("get_serial_no------------", get_serial_no);
             return {
                 "filters": [
@@ -46,15 +42,13 @@ frappe.ui.form.on("Internal Concession", "refresh", function(frm, cdt, cdn) {
     if (reference_type == "Work Order") {
         var item_serial_no = d.item_serial_no;
         console.log("item_serial_no", item_serial_no);
-        var get_serial_no = [];
-        get_serial_no = get_item_serial_list(work_order);
-        console.log("get_serial_no------------", get_serial_no);
 
-        //cur_frm.set_value("serial_no", get_serial_no.toString());
         cur_frm.set_query('item_serial_no', function() {
             var get_serial_no = [];
             get_serial_no = get_item_serial_list(work_order);
             console.log("get_serial_no------------", get_serial_no);
+
+
             return {
                 "filters": [
                     ['Serial No', 'name', 'in', get_serial_no]
@@ -76,6 +70,7 @@ frappe.ui.form.on("Internal Concession", "refresh", function(frm, cdt, cdn) {
 
 function get_item_serial_list(work_order) {
     var item_serial_list = [];
+    var serial_numbers = [];
     frappe.call({
         method: 'jiq.api.serial_no',
         args: {
@@ -83,52 +78,29 @@ function get_item_serial_list(work_order) {
         },
         async: false,
         callback: function(r) {
-
-            for (var i = 0; i < r.message.length; i++) {
-
-                item_serial_list.push(r.message[i].serial_no);
-
-                console.log("item_serial_list", item_serial_list);
-
-            }
-
-        }
-
-    });
-
-    return item_serial_list
-}
-
-function get_serial_list(work_order) {
-    var serial_list = [];
-    frappe.call({
-        method: 'jiq.api.serial_no_list',
-        args: {
-            "work_order": work_order
-        },
-        async: false,
-        callback: function(r) {
-
             if (r.message) {
-                serial_list = JSON.stringify(r.message);
+                item_serial_list = r.message;
 
-                console.log("readings-----------" + JSON.stringify(r.message));
 
+                console.log("output-", item_serial_list);
+
+                for (var i = 0; i < item_serial_list.length; i++) {
+                    var sr_nors = item_serial_list[i].serial_no.split("\n");
+                    for (var j = 0; j < sr_nors.length; j++) {
+                        serial_numbers.push(sr_nors[j]);
+                        console.log("serial_numbers------------", serial_numbers);
+                    }
+
+                }
 
             }
-            /*for (var i = 0; i < r.message.length; i++) {
-				    
-				    serial_list.push(r.message[i]);
-				   
-				    console.log("serial_list",serial_list);
-				    
-				}*/
+
 
         }
 
     });
 
-    return serial_list
+    return serial_numbers
 }
 
 
@@ -140,7 +112,7 @@ function fetch_item_name(work_order) {
         method: 'frappe.client.get_value',
         args: {
             'doctype': "Work Order",
-            'fieldname': "item_name",
+            'fieldname': "production_item",
 
             'filters': {
                 name: work_order,
@@ -149,7 +121,7 @@ function fetch_item_name(work_order) {
         async: false,
         callback: function(r) {
             if (r.message) {
-                item_name = r.message.item_name;
+                item_name = r.message.production_item;
                 console.log(item_name);
                 console.log("readings-----------" + JSON.stringify(r.message));
 
@@ -192,6 +164,7 @@ frappe.ui.form.on("Internal Concession", "item_serial_no", function(frm, cdt, cd
         //cur_frm.set_value('serial_no', some_array);
         cur_frm.set_value("serial_no", filtered.toString());
         frm.refresh_field("item_serial_no");
+        frm.refresh_field("serial_no");
         var serial_no = d.serial_no;
         console.log("serial_no", serial_no);
         //cur_frm.refresh_field("item_serial_no");

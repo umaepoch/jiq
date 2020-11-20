@@ -31,9 +31,10 @@ def item_query_quality_inspection(parent):
 #jyoti
 @frappe.whitelist()
 def serial_no(work_order):
-    serial_no_list= frappe.db.sql("""select sn.serial_no from `tabStock Entry Detail` sed,`tabSerial No` sn,`tabStock Entry` se where sed.parent=se.name and se.work_order='"""+work_order+"""' and sed.s_warehouse is NULL and sn.purchase_document_no=se.name and se.purpose="Manufacture"  """, as_dict=1)
+    serial_no_list= frappe.db.sql("""select sed.serial_no from `tabStock Entry Detail` sed,`tabStock Entry` se where sed.parent=se.name and se.work_order='"""+work_order+"""'  and sed.s_warehouse is NULL  and se.purpose="Manufacture" and se.docstatus!=2  """, as_dict=1)
     #print("items",items)
     return serial_no_list
+
 
 #jyoti
 @frappe.whitelist()
