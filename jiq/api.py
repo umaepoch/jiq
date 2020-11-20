@@ -8,6 +8,7 @@ from erpnext.utilities.transaction_base import TransactionBase
 from erpnext.accounts.party import get_party_account_currency
 from frappe.desk.notifications import clear_doctype_notifications
 from datetime import datetime
+from datetime import date
 import sys
 import os
 import operator
@@ -19,27 +20,32 @@ import base64
 import ast
 import urllib.request
 import urllib.parse
+from datetime import datetime, timedelta
+from frappe.cache_manager import clear_user_cache,clear_global_cache
+from frappe.sessions import Session, clear_sessions
 
+@frappe.whitelist()
+def testing_api():
+	return "success"
 
 #jyoti
 @frappe.whitelist()
 def item_query_quality_inspection(parent):
-    items= frappe.db.sql("""select item_code from `tabWork Order Item` where parent='"""+parent+"""'  """, as_dict=1)
-    #print("items",items)
-    return items
+	items= frappe.db.sql("""select item_code from `tabWork Order Item` where parent='"""+parent+"""'  """, as_dict=1)
+	#print("items",items)
+	return items
 
 #jyoti
 @frappe.whitelist()
 def serial_no(work_order):
-    serial_no_list= frappe.db.sql("""select sed.serial_no from `tabStock Entry Detail` sed,`tabStock Entry` se where sed.parent=se.name and se.work_order='"""+work_order+"""'  and sed.s_warehouse is NULL  and se.purpose="Manufacture" and se.docstatus!=2  """, as_dict=1)
-    #print("items",items)
-    return serial_no_list
-
+	serial_no_list= frappe.db.sql("""select sed.serial_no from `tabStock Entry Detail` sed,`tabStock Entry` se where sed.parent=se.name and se.work_order='"""+work_order+"""'  and sed.s_warehouse is NULL  and se.purpose="Manufacture" and se.docstatus!=2  """, as_dict=1)
+	#print("items",items)
+	return serial_no_list
 
 #jyoti
 @frappe.whitelist()
 def serial_no_list(work_order):
-    serial_no= frappe.db.sql("""select sn.serial_no from `tabStock Entry Detail` sed,`tabSerial No` sn,`tabStock Entry` se where sed.parent=se.name and se.work_order='"""+work_order+"""' and sed.s_warehouse is NULL and sn.purchase_document_no=se.name and se.purpose="Manufacture"  """, as_dict=1)
-    #print("items",items)
-    res = [ sub['serial_no'] for sub in serial_no ] 
-    return res
+	serial_no= frappe.db.sql("""select sn.serial_no from `tabStock Entry Detail` sed,`tabSerial No` sn,`tabStock Entry` se where sed.parent=se.name and se.work_order='"""+work_order+"""' and sed.s_warehouse is NULL and sn.purchase_document_no=se.name and se.purpose="Manufacture"  """, as_dict=1)
+	#print("items",items)
+	res = [ sub['serial_no'] for sub in serial_no ] 
+	return res
