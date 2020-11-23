@@ -5,6 +5,9 @@ frappe.ui.form.on("Internal Concession", "reference_name", function(frm, cdt, cd
     console.log("reference_type", reference_type);
     var work_order = d.reference_name;
     console.log("work_order", work_order);
+    var testing= test_method();
+console.log(" testing",testing);
+
     if (reference_type == "Work Order") {
         var item_serial_no = d.item_serial_no;
         console.log("item_serial_no", item_serial_no);
@@ -72,7 +75,7 @@ function get_item_serial_list(work_order) {
     var item_serial_list = [];
     var serial_numbers = [];
     frappe.call({
-        method: 'jiq.api.serial_no',
+        method: 'jiq.jiq.doctype.internal_concession.internal_concession.serial_no',
         args: {
             "work_order": work_order
         },
@@ -130,6 +133,30 @@ function fetch_item_name(work_order) {
     });
     return item_name
 }
+
+
+
+function test_method() {
+    var test = "";
+    
+    frappe.call({
+        method: 'jiq.jiq.doctype.internal_concession.internal_concession.testing_api',
+        
+        async: false,
+        callback: function(r) {
+            if (r.message) {
+                test = r.message;
+                console.log("output-", test);    
+            }
+
+
+        }
+
+    });
+
+    return test
+}
+
 var array = [];
 var text = [];
 
