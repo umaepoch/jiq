@@ -7,7 +7,7 @@ var sales_order = [];
 console.log("before call", details);
 frappe.call({
 
-    method: "jiq.www.testreport.api_user",
+    method: "jiq.www.CertificationDocuments.api_user",
 
     async: false,
     callback: function(r) {
@@ -96,7 +96,7 @@ function get_value_of_data(delivery_document_no, serial_no) {
     var details;
     frappe.call({
 
-        method: "jiq.www.testreport.delivery_serial",
+        method: "jiq.www.CertificationDocuments.delivery_serial",
         args: {
             "delivery_document_no": delivery_document_no,
             "serial_no": serial_no
@@ -139,7 +139,7 @@ function get_value_of_po_delivery(po_no, delivery_document_no) {
     var details;
     frappe.call({
 
-        method: "jiq.www.testreport.po_delivery",
+        method: "jiq.www.CertificationDocuments.po_delivery",
         args: {
             "delivery_document_no": delivery_document_no,
             "po_no": po_no
@@ -182,7 +182,7 @@ function get_value_of_po_serial(po_no, serial_no) {
     var details;
     frappe.call({
 
-        method: "jiq.www.testreport.po_serial",
+        method: "jiq.www.CertificationDocuments.po_serial",
         args: {
             "serial_no": serial_no,
             "po_no": po_no
@@ -225,7 +225,7 @@ function get_value_of_all_filters(po_no, delivery_document_no, serial_no) {
     var details;
     frappe.call({
 
-        method: "jiq.www.testreport.all_filters_applied",
+        method: "jiq.www.CertificationDocuments.all_filters_applied",
         args: {
             "po_no": po_no,
             "delivery_document_no": delivery_document_no,
@@ -268,7 +268,7 @@ function get_value_of_all_filters(po_no, delivery_document_no, serial_no) {
 function get_all() {
     frappe.call({
 
-        method: "jiq.www.testreport.api_user",
+        method: "jiq.www.CertificationDocuments.api_user",
 
         async: false,
         callback: function(r) {
@@ -305,7 +305,7 @@ function get_po_no(po_no) {
     var details;
     frappe.call({
 
-        method: "jiq.www.testreport.po_no",
+        method: "jiq.www.CertificationDocuments.po_no",
         args: {
             "po_no": po_no
         },
@@ -344,7 +344,7 @@ function get_delivery_document_no(delivery_document_no) {
     var details;
     frappe.call({
 
-        method: "jiq.www.testreport.delivery_document_no",
+        method: "jiq.www.CertificationDocuments.delivery_document_no",
         args: {
             "delivery_document_no": delivery_document_no
         },
@@ -384,7 +384,7 @@ function get_serial_no(serial_no) {
     var details;
     frappe.call({
 
-        method: "jiq.www.testreport.serial_no",
+        method: "jiq.www.CertificationDocuments.serial_no",
         args: {
             "serial_no": serial_no
         },
