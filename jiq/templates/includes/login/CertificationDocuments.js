@@ -21,14 +21,14 @@ frappe.call({
 
         all_data.forEach(function(d) {
          console.log("all_data", d.po_no);
-	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="tcd" }
-            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="tcd" }
-            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="tcd" }
-            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="tcd" }
-            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="tcd" }
-	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="tcd" }
-            if(d.po_no=="" || d.po_no==null){d.po_no="tcd" }
-            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
+	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="TBU" }
+            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="TBU" }
+            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="TBU" }
+            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="TBU" }
+            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="TBU" }
+	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="TBU" }
+            if(d.po_no=="" || d.po_no==null){d.po_no="TBU" }
+            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
         });
         tableBody += '<table>';
 
@@ -127,14 +127,14 @@ function get_value_of_data(delivery_document_no, serial_no) {
 
                all_data.forEach(function(d) {
          console.log("all_data", d.po_no);
-	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="tcd" }
-            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="tcd" }
-            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="tcd" }
-            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="tcd" }
-            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="tcd" }
-	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="tcd" }
-            if(d.po_no=="" || d.po_no==null){d.po_no="tcd" }
-            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
+	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="TBU" }
+            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="TBU" }
+            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="TBU" }
+            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="TBU" }
+            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="TBU" }
+	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="TBU" }
+            if(d.po_no=="" || d.po_no==null){d.po_no="TBU" }
+            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
         });
                 tableBody += '<table>';
 
@@ -178,14 +178,14 @@ function get_value_of_po_delivery(po_no, delivery_document_no) {
 
                all_data.forEach(function(d) {
          console.log("all_data", d.po_no);
-	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="tcd" }
-            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="tcd" }
-            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="tcd" }
-            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="tcd" }
-            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="tcd" }
-	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="tcd" }
-            if(d.po_no=="" || d.po_no==null){d.po_no="tcd" }
-            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
+	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="TBU" }
+            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="TBU" }
+            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="TBU" }
+            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="TBU" }
+            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="TBU" }
+	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="TBU" }
+            if(d.po_no=="" || d.po_no==null){d.po_no="TBU" }
+            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
         });
                 tableBody += '<table>';
 
@@ -229,14 +229,14 @@ function get_value_of_po_serial(po_no, serial_no) {
 
                 all_data.forEach(function(d) {
          console.log("all_data", d.po_no);
-	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="tcd" }
-            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="tcd" }
-            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="tcd" }
-            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="tcd" }
-            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="tcd" }
-	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="tcd" }
-            if(d.po_no=="" || d.po_no==null){d.po_no="tcd" }
-            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
+	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="TBU" }
+            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="TBU" }
+            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="TBU" }
+            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="TBU" }
+            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="TBU" }
+	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="TBU" }
+            if(d.po_no=="" || d.po_no==null){d.po_no="TBU" }
+            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
         });
                 tableBody += '<table>';
 
@@ -281,14 +281,14 @@ function get_value_of_all_filters(po_no, delivery_document_no, serial_no) {
 
                 all_data.forEach(function(d) {
          console.log("all_data", d.po_no);
-	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="tcd" }
-            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="tcd" }
-            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="tcd" }
-            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="tcd" }
-            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="tcd" }
-	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="tcd" }
-            if(d.po_no=="" || d.po_no==null){d.po_no="tcd" }
-            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
+	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="TBU" }
+            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="TBU" }
+            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="TBU" }
+            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="TBU" }
+            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="TBU" }
+	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="TBU" }
+            if(d.po_no=="" || d.po_no==null){d.po_no="TBU" }
+            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
         });
                 tableBody += '<table>';
                 // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
@@ -326,14 +326,14 @@ function get_all() {
 
                 all_data.forEach(function(d) {
          console.log("all_data", d.po_no);
-	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="tcd" }
-            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="tcd" }
-            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="tcd" }
-            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="tcd" }
-            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="tcd" }
-	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="tcd" }
-            if(d.po_no=="" || d.po_no==null){d.po_no="tcd" }
-            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
+	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="TBU" }
+            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="TBU" }
+            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="TBU" }
+            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="TBU" }
+            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="TBU" }
+	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="TBU" }
+            if(d.po_no=="" || d.po_no==null){d.po_no="TBU" }
+            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
         });
                 tableBody += '<table>';
                 // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
@@ -374,14 +374,14 @@ function get_po_no(po_no) {
 
                 all_data.forEach(function(d) {
          console.log("all_data", d.po_no);
-	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="tcd" }
-            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="tcd" }
-            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="tcd" }
-            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="tcd" }
-            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="tcd" }
-	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="tcd" }
-            if(d.po_no=="" || d.po_no==null){d.po_no="tcd" }
-            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
+	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="TBU" }
+            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="TBU" }
+            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="TBU" }
+            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="TBU" }
+            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="TBU" }
+	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="TBU" }
+            if(d.po_no=="" || d.po_no==null){d.po_no="TBU" }
+            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
         });
                 tableBody += '<table>';
 
@@ -422,14 +422,14 @@ function get_delivery_document_no(delivery_document_no) {
 
                 all_data.forEach(function(d) {
          console.log("all_data", d.po_no);
-	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="tcd" }
-            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="tcd" }
-            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="tcd" }
-            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="tcd" }
-            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="tcd" }
-	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="tcd" }
-            if(d.po_no=="" || d.po_no==null){d.po_no="tcd" }
-            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
+	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="TBU" }
+            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="TBU" }
+            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="TBU" }
+            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="TBU" }
+            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="TBU" }
+	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="TBU" }
+            if(d.po_no=="" || d.po_no==null){d.po_no="TBU" }
+            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
         });
                 tableBody += '<table>';
 
@@ -470,14 +470,14 @@ function get_serial_no(serial_no) {
 
                 all_data.forEach(function(d) {
          console.log("all_data", d.po_no);
-	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="tcd" }
-            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="tcd" }
-            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="tcd" }
-            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="tcd" }
-            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="tcd" }
-	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="tcd" }
-            if(d.po_no=="" || d.po_no==null){d.po_no="tcd" }
-            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 3px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
+	    if(d.pch1_coc=="" || d.pch1_coc==null){d.pch1_coc="TBU" }
+            if(d.pch1_pressure_test=="" || d.pch1_pressure_test==null){d.pch1_pressure_test="TBU" }
+            if(d.pch1_build_sheet=="" || d.pch1_build_sheet==null){d.pch1_build_sheet="TBU" }
+            if(d.pch1_eu_declaration_of_conformity=="" || d.pch1_eu_declaration_of_conformity==null){d.pch1_eu_declaration_of_conformity="TBU" }
+            if(d.pch1_dnv_gl_product_certificate=="" || d.pch1_dnv_gl_product_certificate==null){d.pch1_dnv_gl_product_certificate="TBU" }
+	    if(d.pch1_combined_pdf=="" || d.pch1_combined_pdf==null){d.pch1_combined_pdf="TBU" }
+            if(d.po_no=="" || d.po_no==null){d.po_no="TBU" }
+            tableBody += '<tr><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.item_name + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.serial_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_coc + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_pressure_test + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_build_sheet + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_dnv_gl_product_certificate + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_eu_declaration_of_conformity + '</td><td style="text-align:center;border-color: lightgray;">' + d.pch1_combined_pdf + '</td><td style="text-align:center;border-color: lightgray;">' + d.po_no + '</td><td style="text-align:left;border-color: lightgray;padding-left: 4px;">' + d.delivery_document_no + '</td><td style="text-align:center;border-color: lightgray;">' + d.delivery_date + '</td></tr>';
         });
                 tableBody += '<table>';
 
