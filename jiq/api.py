@@ -12,7 +12,6 @@ from datetime import date
 import sys
 import os
 import operator
-import frappe
 import json
 import time
 import math
@@ -23,6 +22,9 @@ import urllib.parse
 from datetime import datetime, timedelta
 from frappe.cache_manager import clear_user_cache,clear_global_cache
 from frappe.sessions import Session, clear_sessions
+from PyPDF2 import PdfFileMerger, PdfFileReader,PdfFileWriter
+from shutil import copyfile
+import PyPDF2 
 
 @frappe.whitelist()
 def testing_api():
@@ -49,3 +51,38 @@ def serial_no_list(work_order):
 	#print("items",items)
 	res = [ sub['serial_no'] for sub in serial_no ] 
 	return res
+
+@frappe.whitelist()
+def combine(attached_to_name):
+    get_merge_file_url_list = frappe.db.sql("""select pch_coc,pch_build_sheet,pch_pressure_test,pch_eu_declaration,pch_dnv_gl_product_certificate from `tabSerial No` where name=%s""",attached_to_name)
+    lists=[]
+    paths=[]
+    path_url = '/home/frappe/frappe-bench/sites/site1.local/public'
+    list_of_values=list(get_merge_file_url_list[0])
+    Not_none_values = filter(None.__ne__, list_of_values)
+    list_of_values = list(Not_none_values)
+    #print(list_of_values)
+    for loop in list_of_values:
+        test1=path_url+loop
+        lists.append(test1)
+    paths=lists
+    #print("paths",paths)
+    path_of_file='/home/frappe/frappe-bench/sites/site1.local/public/files/'
+    name_of_merge_pdf=attached_to_name+".pdf"
+    name_of_pdf= os.path.join(path_of_file, name_of_merge_pdf)
+    #print("-------------",name_of_pdf)
+    pdf_writer = PdfFileWriter()
+
+    for path in paths:
+        pdf_reader = PdfFileReader(path)
+        for page in range(pdf_reader.getNumPages()):
+            # Add each page to the writer object
+            pdf_writer.addPage(pdf_reader.getPage(page))
+    output=name_of_pdf
+    with open(output, 'wb') as out:
+        pdf_writer.write(out)
+        #print("test_path",out)
+    frappe.msgprint(_("Single pdf File created "))
+    file_url = "/files/"+attached_to_name+".pdf"
+    return file_url
+
