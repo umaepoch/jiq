@@ -26,6 +26,8 @@ from PyPDF2 import PdfFileMerger, PdfFileReader,PdfFileWriter
 from shutil import copyfile
 import PyPDF2 
 
+STANDARD_USERS = ("Guest", "Administrator")
+
 @frappe.whitelist()
 def testing_api():
 	return "success"
@@ -57,7 +59,7 @@ def combine(attached_to_name):
     get_merge_file_url_list = frappe.db.sql("""select pch_coc,pch_build_sheet,pch_pressure_test,pch_eu_declaration,pch_dnv_gl_product_certificate from `tabSerial No` where name=%s""",attached_to_name)
     lists=[]
     paths=[]
-    path_url = '/home/frappe/frappe-bench/sites/site1.local/public'
+    path_url = '/home/mdpy27/frappe-bench/sites/site1.local/public'
     list_of_values=list(get_merge_file_url_list[0])
     Not_none_values = filter(None.__ne__, list_of_values)
     list_of_values = list(Not_none_values)
@@ -67,7 +69,7 @@ def combine(attached_to_name):
         lists.append(test1)
     paths=lists
     #print("paths",paths)
-    path_of_file='/home/frappe/frappe-bench/sites/site1.local/public/files/'
+    path_of_file='/home/mdpy27/frappe-bench/sites/site1.local/public/files/'
     name_of_merge_pdf=attached_to_name+".pdf"
     name_of_pdf= os.path.join(path_of_file, name_of_merge_pdf)
     #print("-------------",name_of_pdf)
@@ -85,4 +87,44 @@ def combine(attached_to_name):
     frappe.msgprint(_("Single pdf File created "))
     file_url = "/files/"+attached_to_name+".pdf"
     return file_url
+
+#jyoti
+@frappe.whitelist()
+def userlist(user):
+    name_of_user=user
+    #print("name_of_user",name_of_user)
+    names= frappe.db.sql("""select user from `tabCustomer Profile` where  docstatus=1 and user='"""+user+"""' """ , as_dict=1)
+    #print ("names----",names)
+    return names
+
+@frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
+def user_query(doctype, txt, searchfield, start, page_len, filters):
+	from frappe.desk.reportview import get_match_cond
+
+	user_type_condition = "and user_type = 'Website User'"
+	if filters and filters.get('ignore_user_type'):
+		user_type_condition = ''
+
+	txt = "%{}%".format(txt)
+	return frappe.db.sql("""SELECT `name`, CONCAT_WS(' ', first_name, middle_name, last_name)
+		FROM `tabUser`
+		WHERE `enabled`=1
+			{user_type_condition}
+			AND `docstatus` < 2
+			AND `name` NOT IN ({standard_users})
+			AND ({key} LIKE %(txt)s
+				OR CONCAT_WS(' ', first_name, middle_name, last_name) LIKE %(txt)s)
+			{mcond}
+		ORDER BY
+			CASE WHEN `name` LIKE %(txt)s THEN 0 ELSE 1 END,
+			CASE WHEN concat_ws(' ', first_name, middle_name, last_name) LIKE %(txt)s
+				THEN 0 ELSE 1 END,
+			NAME asc
+		LIMIT %(page_len)s OFFSET %(start)s""".format(
+			user_type_condition = user_type_condition,
+			standard_users=", ".join([frappe.db.escape(u) for u in STANDARD_USERS]),
+			key=searchfield, mcond=get_match_cond(doctype)),
+			dict(start=start, page_len=page_len, txt=txt))
+    
 
