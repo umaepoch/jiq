@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+import shutil
 import frappe
 from frappe import _, throw, msgprint, utils
 from frappe.utils import cint, flt, cstr, comma_or, getdate, add_days, getdate, rounded, date_diff, money_in_words
@@ -11,7 +12,6 @@ from datetime import datetime
 from datetime import date
 import sys
 import os
-import operator
 import json
 import time
 import math
@@ -25,19 +25,7 @@ from frappe.sessions import Session, clear_sessions
 from PyPDF2 import PdfFileMerger, PdfFileReader,PdfFileWriter
 from shutil import copyfile
 import PyPDF2 
-from __future__ import unicode_literals, print_function
-from frappe.model.document import Document
-from frappe.utils import cint, flt
-from frappe.utils.password import update_password as _update_password
-from frappe.desk.notifications import clear_notifications
-from frappe.desk.doctype.notification_settings.notification_settings import create_notification_settings
-from frappe.utils.user import get_system_managers
-from bs4 import BeautifulSoup
-import frappe.permissions
-import frappe.share
-import re
-import json
-from frappe.website.utils import is_signup_enabled
+import shutil
 
 STANDARD_USERS = ("Guest", "Administrator")
 
