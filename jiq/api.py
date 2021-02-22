@@ -60,10 +60,15 @@ def combine(attached_to_name):
     lists=[]
     paths=[]
     path_url = '/home/frappe/frappe-bench/sites/site1.local/public'
-    list_of_values=list(get_merge_file_url_list[0])
-    Not_none_values = filter(None.__ne__, list_of_values)
-    list_of_values = list(Not_none_values)
+    #list_of_values=list(get_merge_file_url_list[0])
+    #Not_none_values = filter(None.__ne__, list_of_values)
+    #list_of_values = list(Not_none_values)
     #print(list_of_values)
+    res = [] 
+    for val in get_merge_file_url_list[0]: 
+	    if val != None : 
+		    res.append(val)
+    list_of_values=res
     for loop in list_of_values:
         test1=path_url+loop
         lists.append(test1)
