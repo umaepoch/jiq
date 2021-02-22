@@ -25,9 +25,8 @@ from frappe.sessions import Session, clear_sessions
 from PyPDF2 import PdfFileMerger, PdfFileReader,PdfFileWriter
 from shutil import copyfile
 import PyPDF2 
-import shutil
+import erpnext
 
-STANDARD_USERS = ("Guest", "Administrator")
 
 @frappe.whitelist()
 def testing_api():
@@ -99,6 +98,7 @@ def userlist(user):
     return names
 
 @frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
 def user_query(doctype, txt, searchfield, start, page_len, filters):
 	from frappe.desk.reportview import get_match_cond
 
@@ -112,7 +112,6 @@ def user_query(doctype, txt, searchfield, start, page_len, filters):
 		WHERE `enabled`=1
 			{user_type_condition}
 			AND `docstatus` < 2
-			AND `name` NOT IN ({standard_users})
 			AND ({key} LIKE %(txt)s
 				OR CONCAT_WS(' ', first_name, middle_name, last_name) LIKE %(txt)s)
 			{mcond}
@@ -123,7 +122,6 @@ def user_query(doctype, txt, searchfield, start, page_len, filters):
 			NAME asc
 		LIMIT %(page_len)s OFFSET %(start)s""".format(
 			user_type_condition = user_type_condition,
-			standard_users=", ".join([frappe.db.escape(u) for u in STANDARD_USERS]),
 			key=searchfield, mcond=get_match_cond(doctype)),
 			dict(start=start, page_len=page_len, txt=txt))
     
