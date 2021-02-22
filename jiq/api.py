@@ -59,7 +59,7 @@ def combine(attached_to_name):
     get_merge_file_url_list = frappe.db.sql("""select pch_coc,pch_build_sheet,pch_pressure_test,pch_eu_declaration,pch_dnv_gl_product_certificate from `tabSerial No` where name=%s""",attached_to_name)
     lists=[]
     paths=[]
-    path_url = '/home/mdpy27/frappe-bench/sites/site1.local/public'
+    path_url = '/home/frappe/frappe-bench/sites/site1.local/public'
     list_of_values=list(get_merge_file_url_list[0])
     Not_none_values = filter(None.__ne__, list_of_values)
     list_of_values = list(Not_none_values)
@@ -69,7 +69,7 @@ def combine(attached_to_name):
         lists.append(test1)
     paths=lists
     #print("paths",paths)
-    path_of_file='/home/mdpy27/frappe-bench/sites/site1.local/public/files/'
+    path_of_file='/home/frappe/frappe-bench/sites/site1.local/public/files/'
     name_of_merge_pdf=attached_to_name+".pdf"
     name_of_pdf= os.path.join(path_of_file, name_of_merge_pdf)
     #print("-------------",name_of_pdf)
