@@ -17,8 +17,8 @@ import time
 import math
 import base64
 import ast
-import urllib.request
-import urllib.parse
+#import urllib.request
+#import urllib.parse
 from datetime import datetime, timedelta
 from frappe.cache_manager import clear_user_cache,clear_global_cache
 from frappe.sessions import Session, clear_sessions
