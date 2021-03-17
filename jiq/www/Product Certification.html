@@ -1,0 +1,84 @@
+{% extends base_template_path %}
+{% block content %}
+{% block page_content %}
+<style>
+   #showData{
+   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+   font-size: 14px;
+   margin-top:15px;
+   }
+   #text{
+   font-family: -apple-system, BlinkMacSystemFont,"Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"!important;
+   font-weight: 400!important;
+   font-size: 16px!important;
+   color: #0f5179;
+   }
+   select {
+   width: 435px;
+   }
+</style>
+<div style="border-style: solid;
+   border-width: 2px; margin-top: 40px; background-color:white;margin-left: 10px;overflow: scroll;height: 500px;margin-right: 10px;border-color: lightgray;">
+<form>
+   <div class="form-group" style="
+      margin-bottom: 1rem;
+      padding-right: 20px;
+      padding-left: 20px;
+      margin-top:20px;">
+   <div class="row" style="margin-top:10px;height:40px;">
+      <div class="col-md-6" >
+         <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label" id="text">Customer PO</label>
+            <div class="col-sm-9" >
+               <input type="text" id="customer_po" size="40">
+            </div>
+         </div>
+      </div>
+      <div class="col-md-6" class="ui-widget" >
+         <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label" id="text">Delivery Note</label>
+            <div class="col-sm-9" id="test">
+               <input type="text" id="delivery_note" size="40">
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="row" style="margin-top:10px;height:40px;">
+      <div class="col-md-6" >
+         <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label" id="text">Item Serial No</label>
+            <div class="col-sm-9">
+               <input type="text" id="item_serial_no" size="40">
+            </div>
+         </div>
+      </div>
+   </div>
+</form>
+<form class="form-inline my-2 my-lg-0 form-signin form-login">
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top:10px;">
+         <!--<button class="btn btn-sm btn-primary btn-block btn-login" type="submit">{{ _("Login") }}</button>-->
+         <!--<button class="btn btn-success my-2 my-sm-0 search_btn_class" id="MyButton" style="margin-left:170px;">Search</button>
+            <button type="button" class="btn btn-danger " style="padding-right:20px;margin-left:5px;">Reset</button>-->
+         <button type="button"  id="text" style="margin-left:170px;padding: 5px 10px;font-size: 14px;
+            background-color:blue;
+            color:white;" onclick='ShowValue(this)'/>Search</button>
+         <button type="button"  id="text" style="padding-right:20px;margin-left: 5px;
+            font-size: 14px;
+            padding: 5px 10px;
+            background-color:#8c8a8a;
+            color:white;" onclick='ResetAll(this)'/>Reset</button>
+</form>
+</div>
+</nav>
+<p style="text-align: right;" id='totalrows'></p>
+<div class="table-responsive">
+   <!--<table id="tableId" class="tableClass"></table>-->
+   <p id='showData' class="tableClass"></p>
+</div>
+<div id=test></div>
+{% endblock %}
+{% block script %}
+<script>{% include "templates/includes/login/Product Certification.js" %}</script>
+{% endblock %}
+{% endblock %}
