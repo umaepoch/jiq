@@ -1,5 +1,21 @@
-{% extends base_template_path %}
-{% block content %}
+{% extends "templates/web.html" %}
+<head>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="smpSortableTable.css">
+  
+   <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Telephone Extension Finder</title>
+      <link href = "https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel = "stylesheet">
+      <link href = "css/main.css" rel = "stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+
+</head>
+   
 {% block page_content %}
 <style>
    #showData{
@@ -7,78 +23,142 @@
    font-size: 14px;
    margin-top:15px;
    }
-   #text{
-   font-family: -apple-system, BlinkMacSystemFont,"Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"!important;
-   font-weight: 400!important;
-   font-size: 16px!important;
-   color: #0f5179;
-   }
-   select {
-   width: 435px;
-   }
+   
+   #container {
+    width: 100%;
+    
+    display: flex;
+}
+#button_section {
+    width: 100%;
+    margin-top: 6px;
+    display: flex;
+}
+#pagination {
+  width: 100%;
+  text-align: center;
+}
+th {
+            font-weight:bold;
+            
+        }
+#pagination ul li {
+  display: inline;
+  margin-left: 10px;
+}
+#a {
+    width: 50%;
+    
+    margin-right: auto;
+}
+
+#b {
+    width: 50%;
+    
+    
+    margin-left: auto;
+}
+
+
+#button1 {
+    width: 50%;
+    
+    margin-right: auto;
+}
+
+#button2 {
+    width: 50%;
+    
+    
+    margin-left: auto;
+}
 </style>
-<div style="border-style: solid;
-   border-width: 2px; margin-top: 40px; background-color:white;margin-left: 10px;overflow: scroll;height: 500px;margin-right: 10px;border-color: lightgray;">
-<form>
-   <div class="form-group" style="
-      margin-bottom: 1rem;
-      padding-right: 20px;
-      padding-left: 20px;
-      margin-top:20px;">
-   <div class="row" style="margin-top:10px;height:40px;">
-      <div class="col-md-6" >
-         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-3 col-form-label" id="text">Customer PO</label>
-            <div class="col-sm-9" >
-               <input type="text" id="customer_po" size="40">
-            </div>
-         </div>
-      </div>
-      <div class="col-md-6" class="ui-widget" >
-         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-3 col-form-label" id="text">Delivery Note</label>
-            <div class="col-sm-9" id="test">
-               <input type="text" id="delivery_note" size="40">
-            </div>
-         </div>
-      </div>
+<!-- no-cache -->
+<body>
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<div class="row your-account-info d-none d-sm-block">
+	
+<div id="container">
+   <div id="a">
+      <label style="margin-right: 14px;" for="inputEmail3"   id="text">Customer PO</label>
+      
+         <input type="text" id="customer_po" size="33">
    </div>
-   <div class="row" style="margin-top:10px;height:40px;">
-      <div class="col-md-6" >
-         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-3 col-form-label" id="text">Item Serial No</label>
-            <div class="col-sm-9">
-               <input type="text" id="item_serial_no" size="40">
-            </div>
-         </div>
-      </div>
+   <div id="b">
+      <label style="margin-right: 14px;" for="inputEmail3"   id="text">Delivery Note</label>
+               <input type="text" id="delivery_note" size="33">
    </div>
-</form>
-<form class="form-inline my-2 my-lg-0 form-signin form-login">
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top:10px;">
-         <!--<button class="btn btn-sm btn-primary btn-block btn-login" type="submit">{{ _("Login") }}</button>-->
-         <!--<button class="btn btn-success my-2 my-sm-0 search_btn_class" id="MyButton" style="margin-left:170px;">Search</button>
-            <button type="button" class="btn btn-danger " style="padding-right:20px;margin-left:5px;">Reset</button>-->
-         <button type="button"  id="text" style="margin-left:170px;padding: 5px 10px;font-size: 14px;
+</div>
+<div style="height: 15px;"></div>
+<div id="container">
+   <div id="a">
+      <label style="margin-right: 10px;" for="inputEmail3"   id="text">Item Serial No</label>
+      
+         <input type="text" id="item_serial_no" size="33">
+   </div>
+   <div id="b">
+      
+   </div>
+</div>
+<div id="button_section">
+   <div id="button1">
+      <button type="button"  id="text" style="margin-left:170px;padding: 5px 10px;font-size: 14px;
             background-color:blue;
             color:white;" onclick='ShowValue(this)'/>Search</button>
-         <button type="button"  id="text" style="padding-right:20px;margin-left: 5px;
+            <button type="button"  id="text" style="padding-right:20px;margin-left: 5px;
             font-size: 14px;
             padding: 5px 10px;
             background-color:#8c8a8a;
             color:white;" onclick='ResetAll(this)'/>Reset</button>
-</form>
+   </div>
+   <div id="button2">
+      <p style="text-align: right;" id='totalrows'>hello</p>
+   </div>
 </div>
-</nav>
-<p style="text-align: right;" id='totalrows'></p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://pagination.js.org/dist/2.1.4/pagination.min.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://pagination.js.org/dist/2.1.4/pagination.min.js"></script>
 <div class="table-responsive">
-   <!--<table id="tableId" class="tableClass"></table>-->
-   <p id='showData' class="tableClass"></p>
-</div>
-<div id=test></div>
-{% endblock %}
-{% block script %}
-<script>{% include "templates/includes/login/Product Certification.js" %}</script>
-{% endblock %}
+    <!--<table id="tableId" class="tableClass"></table>-->
+    
+    <p id='showData' class="tableClass">
+       <table id="itemList" class="sortable" border=1 style="font-size: 12px;overflow-x: auto;">
+          <thead>
+          <tr>
+             <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 9%>Item Name</th>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 14%>Item Serial No</th>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 4%>COC</th>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 10% >Pressure Test</th>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 9%>Build Sheet</th>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 9%>DNV-GL Product Certificate</th>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 9%>EU Declaration of Conformity</th>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 6%>Docpack</th>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 10%>Customer PO</th>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 14%>Delivery Note</th>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 9%>Delivery Note Date</th>
+          
+          </tr>
+          </thead>
+          <tbody id="data-container">
+          </tbody>
+       </table>
+       
+    </p>
+    
+   
+    <div id="pagination"></div>
+ </div>
+ 
+ 
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</body>
 {% endblock %}
