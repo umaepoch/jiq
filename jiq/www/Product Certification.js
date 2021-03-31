@@ -4339,7 +4339,7 @@ function get_delivery_document_no_serial_no_asc(delivery_document_no) {
     var details;
     frappe.call({
 
-        method: "jiq.www.Product Certification.delivery_document_no_serial_no_asc",
+        method: "jiq.www.Product Certification.delivery_document_no_item_serial_asc",
         args: {
             "delivery_document_no": delivery_document_no
         },
