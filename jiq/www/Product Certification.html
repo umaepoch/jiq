@@ -73,11 +73,12 @@ th {
     margin-left: auto;
 }
 .dropbtn {
-      font-size: 20px;
+      font-size: 12px;
       border: none;
       -ms-transform: scaleY(1);
       transform:scale(1);
-      
+      background-color: lightgray;
+      font-weight: bold;
         
       }
       .down {
@@ -93,13 +94,12 @@ th {
     
     .dropdown-content {
       display: none;
-     position:fixed;
+      position: absolute;
       background-color: #f1f1f1;
       min-width: 110px;
-      box-shadow: 0px 1px 1px 0px rgb(245, 241, 241);
+      box-shadow: 0px 2px 4px 0px rgb(245, 241, 241);
       z-index: 1;
-      
-    }
+}
     span {
       content: "\2186";
     }
@@ -316,50 +316,50 @@ th {
     <!--<table id="tableId" class="tableClass"></table>-->
     
     <p id='showData' class="tableClass">
-       <table id="itemList" border=1 style="font-size: 12px;overflow-x: auto;">
+       <table id="itemList" border=1 style="font-size: 12px;overflow-x: auto;" width=100%>
           <thead>
           <tr>
-             <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 9%><label id="item_name" for="itemName">Item Name</label>
-              <div class="dropdown" >
-              <button class="dropbtn myDIV btn"><span class="hide">&#x2186;</span></button>
-              <div class="item_name">
+             <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 9.6%><div class="dropdown">
+              <button  class="dropbtn">Item Name</button>
+              <div  class="item_name">
+                
                 <a style="font-size: 10px;padding:2px 2px;" onclick= "sortAscItemName()">Sort Ascending</a>              
                 <a style="font-size: 10px;padding:2px 2px;" onclick = "sortDescItemName()">Sort Descending</a>
               </div>
             </div></th>
-          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 14%><label id="serial_no" for="item_serial_no">Item Serial No</label>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 14%>
             <div class="dropdown" >
-            <button class="dropbtn myDIV btn"><span class="hide">&#x2186;</span></button>
+            <button class="dropbtn myDIV btn">Item Serial No</button>
             <div class="serial_no">
               <a style="font-size: 10px;padding:2px 2px;" onclick= "sortAscSerial()">Sort Ascending</a>              
               <a style="font-size: 10px;padding:2px 2px;" onclick = "sortDescSerial()">Sort Descending</a>
             </div>
           </div></th>
           <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 4%>COC</th>
-          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 10% >Pressure Test</th>
-          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 9%>Build Sheet</th>
-          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 9%>DNV-GL Product Certificate</th>
-          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 9%>EU Declaration of Conformity</th>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 9.8% >Pressure Test</th>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 8%>Build Sheet</th>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 7%>DNV-GL Product Certificate</th>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 8%>EU Declaration of Conformity</th>
           <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 6%>Docpack</th>
-          <th id="po_no" style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 10%><label id="po_no" for="customer_po">Customer PO</label>
+          <th id="po_no" style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 11.8%>
             <div class="dropdown">
-            <button class="dropbtn myDIV btn"><span class="hide">&#x2186;</span></button>
+            <button class="dropbtn myDIV btn">Customer PO</button>
             <div class="po_no" >
               <a style="font-size: 10px;padding:2px 2px;"  onclick= "sortAscPo()">Sort Ascending</a>              
               <a style="font-size: 10px;padding:2px 2px;" onclick = "sortDescPo()">Sort Descending</a>
             </div>
           </div></th>
-          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 14%><label id="delivery_document_no" for="delivery_no">Delivery Note</label>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 13.8%>
             <div class="dropdown">
-            <button class="dropbtn myDIV btn"><span class="hide">&#x2186;</span></button>
+            <button class="dropbtn myDIV btn">Delivery Note</button>
             <div  class="delivery_document_no">
               <a style="font-size: 10px;padding:2px 2px;" onclick= "sortAscDeliveryNo()">Sort Ascending</a>              
               <a style="font-size: 10px;padding:2px 2px;" onclick = "sortDescDeliveryNo()">Sort Descending</a>
             </div>
           </div></th>
-          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 9%><label id="delivery_note_date" for="delivery_date">Delivery Note Date</label>
+          <th style="text-align:center;background-color:lightgray;padding: 2px 3px;" width = 8%>
             <div class="dropdown">
-            <button class="dropbtn myDIV btn"><span class="hide">&#x2186;</span></button>
+            <button class="dropbtn myDIV btn">Delivery Note Date</button>
             <div class="dropdown-content">
               <a style="font-size: 10px;padding:2px 2px;" onclick= "sortAscDeliveryDate()">Sort Ascending</a>              
               <a style="font-size: 10px;padding:2px 2px;" onclick = "sortDescDeliveryDate()">Sort Descending</a>
